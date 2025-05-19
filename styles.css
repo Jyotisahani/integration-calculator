@@ -1,0 +1,264 @@
+:root {
+  --bg-color: #0d0d0d;
+  --text-color: #f0f0f0;
+  --neon-cyan: #00ffff;
+  --neon-magenta: #ff00ff;
+  --neon-lime: #00ff00;
+  --neon-blue: #0088ff;
+  --card-bg: #151515;
+  --shadow-color: rgba(0, 255, 255, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--text-color);
+  text-shadow: 0 0 10px var(--neon-cyan),
+               0 0 20px var(--neon-cyan),
+               0 0 40px var(--neon-cyan);
+  animation: pulse 2s infinite;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: var(--neon-magenta);
+  margin-top: 0.5rem;
+  text-shadow: 0 0 5px var(--neon-magenta);
+}
+
+.calculator {
+  background-color: var(--card-bg);
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 0 20px var(--shadow-color);
+  border: 1px solid rgba(0, 255, 255, 0.1);
+  animation: fadeIn 0.8s ease-out;
+}
+
+.input-section {
+  margin-bottom: 2rem;
+}
+
+.input-group {
+  margin-bottom: 1.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--neon-blue);
+  text-shadow: 0 0 5px rgba(0, 136, 255, 0.5);
+}
+
+input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid var(--neon-cyan);
+  border-radius: 8px;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--neon-magenta);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+}
+
+.bounds-container {
+  display: flex;
+  gap: 1rem;
+}
+
+.bounds-container .input-group {
+  flex: 1;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+button {
+  flex: 1;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.calculate-btn {
+  background-color: var(--neon-cyan);
+  color: var(--bg-color);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.calculate-btn:hover {
+  background-color: #33ffff;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.7);
+}
+
+.clear-btn {
+  background-color: var(--neon-magenta);
+  color: var(--bg-color);
+  box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
+}
+
+.clear-btn:hover {
+  background-color: #ff33ff;
+  box-shadow: 0 0 20px rgba(255, 0, 255, 0.7);
+}
+
+.button-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+button:hover .button-glow {
+  opacity: 0.2;
+  animation: pulse 1.5s infinite;
+}
+
+.result-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  border-left: 3px solid var(--neon-lime);
+  box-shadow: 0 0 15px rgba(0, 255, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+}
+
+.result-section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.result-title {
+  color: var(--neon-lime);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  text-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+.math-display {
+  margin: 1rem 0;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  overflow-x: auto;
+}
+
+.math-label {
+  color: var(--neon-blue);
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.katex-display {
+  margin: 0.5rem 0 !important;
+}
+
+.error {
+  color: #ff4d4d;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  border-left: 3px solid #ff4d4d;
+  background-color: rgba(255, 77, 77, 0.1);
+  border-radius: 4px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+  }
+  
+  .calculator {
+    padding: 1.5rem;
+  }
+  
+  .button-group {
+    flex-direction: column;
+  }
+  
+  .bounds-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
